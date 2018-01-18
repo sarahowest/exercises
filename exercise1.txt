@@ -1,0 +1,15 @@
+cd 
+mkdir exercises
+cd exercises
+git init
+git config user.name
+	sara
+Touch README
+git add README
+git status
+git commit -m "first commit"
+git remote add origin https://github.com/sarahwest/exercises.git
+git push -u origin master
+	username:
+	password:
+
