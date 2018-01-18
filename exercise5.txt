@@ -51,7 +51,8 @@ mysql vacation < vacation.sql
 
 • List all guests currently staying at the The Tower Hotel.
 
-	
+	SELECT guestname, hotelname, datefrom, dateto FROM guest JOIN booking ON guest.guestno=booking.guestno JOIN hotel ON booking.hotelno=hotel.hotelno WHERE (current_date() between datefrom and dateto) and hotelname="The Tower Hotel";
+	0
 
 • List the details of all rooms at the The Tower Hotel, including the name of the guest staying in the room, if the room is occupied.
 
