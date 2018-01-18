@@ -13,11 +13,63 @@ equal to 3.7
 
 
 • List the name and hiring date of faculty hired in 1999 or 2000
+
+	SELECT concat(FacFirstName, ' ', FacLastName) as fac_name, FacHireDate FROM faculty WHERE year(FacHireDate) between 1999 and 2000;
+	'CRISTOPHER COLAN', '1999-03-01'
+	'JULIA MILLS', '2000-03-15'
+
+
 • List the offer number, course number and faculty Social Security number for course
 offerings scheduled in fall 2005 or winter 2006
+	SELECT OfferNo, CourseNo, FacSSN, OffTerm, OffYear from offering WHERE (OffTerm = "FALL" or OffTerm = "WINTER") AND (OffYear between 2005 and 2006);
+	'1234', 'IS320', '098-76-5432', 'FALL', '2005'
+	'4321', 'IS320', '098-76-5432', 'FALL', '2005'
+	'4444', 'IS320', '543-21-0987', 'WINTER', '2006'
+	'5555', 'FIN300', '765-43-2109', 'WINTER', '2006'
+	'5678', 'IS480', '987-65-4321', 'WINTER', '2006'
+	'6666', 'FIN450', '987-65-4321', 'WINTER', '2006'
+
+
 • List the offering number, course number, days and time of offerings containing the
 words 'database' or 'programming' in the course description and taught in spring
 2006.
+
+	SELECT OfferNo, offering.CourseNo, OffDays, OffTime from offering  JOIN course ON offering.CourseNo=course.CourseNo WHERE (OffTerm = "SPRING" and OffYear = 2006) AND (crsDesc like "%database" or crsDesc like "%programming");
+	'3333', 'IS320', 'MW', '08:30:00'
+
+• List the offer number, course number and name of the instructor of IS course offerings scheduled in fall 2005 taught by assistant professors
+
+	SELECT distinct(offering.OfferNo), offering.CourseNo, concat(FacFirstName, ' ', FacLastName) as Name_instructor from offering join faculty on offering.FacSSN=faculty.FacSSN WHERE OffTerm="FALL" and OffYear="2005" and FacRank="ASST";
+
+	'1234', 'IS320', 'LEONARD VINCE'
+	'4321', 'IS320', 'LEONARD VINCE'
+
+• Summarize the averageGPA of students by major.
+	SELECT avg(stdGPA), stdMajor FROM student group by stdMajor;
+	'3.400000', 'ACCT'
+	'2.800000', 'FIN'
+	'3.233333', 'IS'
+
+• Summarize the number of offerings and unique courses by year.
+
+	SELECT count(OfferNo), count(distinct(CourseNo)), OffYear FROM offering GROUP BY OffYear;
+	'3', '3', '2005'
+	'10', '10', '2006'
+
+• Summarize the average GPA of upper-division (junior or senior) students by major. Only list the major with average GPA greater than 3.1.
+
+	SELECT avg(stdGPA) FROM student WHERE avg(stGPA>3.1) GROUP BY stdMajor HAVING stdClass= "JR" of stdClass="SR"
+
+
+• Summarize the minimum and maximum GPA of students by major and class.
+• Summarize the number of IS course offering by course description.
+• List the GPA, name, city and state of juniors, lowest GPA first.
+• List the unique city and state combination in the Faculty table.
+• List the student name, offering number and grade of students who have a grade >=3.5 in a course offering.
+• List the names of students (without duplicates) who have grades >= 3.5 in a course
+offering.
+• List Bob Norbert's course schedule in spring 2006. For each course, list the offering number, course number, days, location, time and faculty name.
+
 
 
 
