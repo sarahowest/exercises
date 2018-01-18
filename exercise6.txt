@@ -1,0 +1,5 @@
+mysql -u root -p
+> CREATE database college;
+> GRANT all ON college.* TO sara@localhost;
+> exit
+mysql college < college.sql
