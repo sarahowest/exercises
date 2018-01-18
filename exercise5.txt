@@ -1,0 +1,63 @@
+mysql -u root -p
+> CREATE database vacation;
+> GRANT all ON vacation.* TO sara@localhost;
+> exit
+mysql vacation < vacation.sql
+
+• List the names and addresses of all guests in London, alphabetically ordered by name.
+
+
+• List all double or family rooms with a price below £40.00 per night, cheapest first.
+
+	SELECT roomno, type, price FROM room WHERE type = "double" or type="family" HAVING price < 40 ORDER BY price asc;
+	
+	'801', 'double', '15.00'
+	'601', 'double', '29.00'
+	'1001', 'double', '30.00'
+	'1101', 'family', '35.00'
+	'701', 'family', '39.00'
+
+
+• List the bookings for which no date_to has been specified.
+
+	SELECT * FROM booking WHERE dateto is NULL;
+
+• What is the average price of a room?
+
+	SELECT avg(price) FROM room;
+
+	'35.748333'
+
+• What is the total revenue per night from all double rooms?
+
+
+• How many different guests have made bookings for August?
+
+
+• List the price and type of all rooms at the The Tower Hotel.
+
+
+• List all guests currently staying at the The Tower Hotel.
+
+
+• List the details of all rooms at the The Tower Hotel, including the name of the guest staying in the room, if the room is occupied.
+
+
+• What is the total income from bookings for the The Tower Hotel today?
+
+
+• List the rooms that are currently unoccupied at the The Tower Hotel.
+
+
+• What is the lost income from unoccupied rooms at the The Tower Hotel?
+
+
+• List the number of rooms in each hotel in London.
+
+
+• What is the most commonly booked room type for each hotel in London?
+
+
+• Update the price of all rooms by 5%.
+
+
