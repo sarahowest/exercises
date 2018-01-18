@@ -1,0 +1,23 @@
+• Get the sequence for the region from basepair 32889000 to 32891000 of human chromosome 13 in FASTA format. Hardmask and softmask the sequence. How many repeat regions are there in this sequence?
+
+curl 'http://rest.ensembl.org/sequence/region/homo_sapiens/13:32889000..32891000:1?mask=hard' -H'Content-type:text/x-fasta'
+
+curl 'http://rest.ensembl.org/sequence/region/homo_sapiens/13:32889000..32891000:1?mask=soft' -H'Content-type:text/x-fasta'
+
+4 repeating regions (N-tellen)
+
+• Get the Ensembl Gene ID for the human CCR5 (chemokine (CC motif) receptor 5)
+gene.
+
+curl 'http://rest.ensembl.org/xrefs/symbol/homo_sapiens/CCR5?content-type=application/json'
+[{"type":"gene","id":"ENSG00000160791"}]
+
+• Has an orthologue for this gene been identified in chimpanzee?
+• Retrieve the genomic FASTA sequence for ENST00000001146
+• Return the archived sequence for both ENSG00000002587 and
+ENSG00000003056
+• Get a sequence from 250 nucleotides located on human chromosome 7 starting
+at position 35182
+
+
+
