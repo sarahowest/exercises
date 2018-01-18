@@ -3,3 +3,21 @@ mysql -u root -p
 > GRANT all ON college.* TO sara@localhost;
 > exit
 mysql college < college.sql
+
+• Retrieve the name, city and grade point average (GPA) of students, greater than or
+equal to 3.7
+
+	SELECT concat(stdFirstName, ' ', stdLastName) as std_name, stdCity, stdGPA FROM student WHERE stdGPA>=3.7;
+	'CRISTOPHER COLAN', 'SEATTLE', '4.00'
+	'WILLIAM PILGRIM', 'BOTHELL', '3.80'
+
+
+• List the name and hiring date of faculty hired in 1999 or 2000
+• List the offer number, course number and faculty Social Security number for course
+offerings scheduled in fall 2005 or winter 2006
+• List the offering number, course number, days and time of offerings containing the
+words 'database' or 'programming' in the course description and taught in spring
+2006.
+
+
+
