@@ -1,0 +1,34 @@
+UNF: 	data(staffNo, denstistName, patientNo, patientName, appointment_date, apointment_time, surgerNo)
+
+	UNF= alle kolommen samen plaatsen in 1 tabel (repeating groups zijn toegelaten)
+
+1NF = UNF
+
+	1NF= opstplitsen van repeating groups en aanwijzen van mogelijke keys
+
+2NF:	data(app_id, date, time, staffNo, patientNo, surgerNo) --> PK: app_id
+	dentist(staffNo, denstistName)
+	patient(patientNo, patientNam)
+	appointment(app_id, date, time) 
+
+	2NF= alle attributen die geen sleutelelement zijn, zijn afhankelijk van de key.
+
+3NF	data(app_id, staffNo, patientNo, surgerNo) --> PK: app_id
+	dentist(staffNo, denstistName)
+	patient(patientNo, patientNam)
+	appointment(app_id, date, time)
+	
+	3NF= alle niet sleutelelementen zijn niet afhankelijk van een ander niet sleutelelement 
+
+BCNF= 3NF
+
+
+NV: Breng alle gegeveins in 1 dngigdig
+
+1NF: elk attribuut is atomaire (1 enkele waarde) geen enkel attribuut wordt herhaald, alle attributen blijven contant in de tijd
+
+2NF:alle niet-sleutel attributen zijn volledig functioneel afhankelijk van de primaire sleutel.
+
+3NF: alle attributen die niet tot een sleutel behoren hangen niet af van een niet-sleutel attribuut
+
+BCNF: geen transitieve afhankelijkheden, dus geen enkele sleutel bevat informatie oever een andere sleutel binnen dezelfde tabel, behalve over de gehele primaire sleutel
