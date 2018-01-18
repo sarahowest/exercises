@@ -6,17 +6,23 @@ mysql vacation < vacation.sql
 
 • List the names and addresses of all guests in London, alphabetically ordered by name.
 
+	SELECT guestname, guestaddress, city FROM guest JOIN booking ON guest.guestno=booking.guestno JOIN hotel ON booking.hotelno=hotel.hotelno WHERE city="London" ORDER BY guestname asc;
+	'Carol Farrel', '6 Achray St, Glasgow', 'London'
+	'Joe Keogh', '2 Fergus Dr, Aberdeen', 'London'
+	'John Kay', '56 High St, London', 'London'
+	'John Kay', '56 High St, London', 'London'
+	'Mike Ritchie', '18 Tain St, London', 'London'
+	'Mike Ritchie', '18 Tain St, London', 'London'
+	'Tina Murphy', '63 Well St, Glasgow', 'London'
 
 • List all double or family rooms with a price below £40.00 per night, cheapest first.
 
 	SELECT roomno, type, price FROM room WHERE type = "double" or type="family" HAVING price < 40 ORDER BY price asc;
-	
 	'801', 'double', '15.00'
 	'601', 'double', '29.00'
 	'1001', 'double', '30.00'
 	'1101', 'family', '35.00'
 	'701', 'family', '39.00'
-
 
 • List the bookings for which no date_to has been specified.
 
@@ -25,20 +31,27 @@ mysql vacation < vacation.sql
 • What is the average price of a room?
 
 	SELECT avg(price) FROM room;
-
 	'35.748333'
 
 • What is the total revenue per night from all double rooms?
 
+	SELECT sum(price) FROM room WHERE type="double";
+	160.00
 
 • How many different guests have made bookings for August?
 
+	SELECT distinct(guestno), datefrom FROM booking WHERE month(datefrom)=09;
+	0
 
 • List the price and type of all rooms at the The Tower Hotel.
-
+ 	SELECT price, type, hotelname FROM room JOIN hotel ON room.hotelno=hotel.hotelno WHERE hotelname = "The Tower Hotel";
+	'19.00', 'single', 'The Tower Hotel'
+	'29.00', 'double', 'The Tower Hotel'
+	'39.00', 'family', 'The Tower Hotel'
 
 • List all guests currently staying at the The Tower Hotel.
 
+	
 
 • List the details of all rooms at the The Tower Hotel, including the name of the guest staying in the room, if the room is occupied.
 
