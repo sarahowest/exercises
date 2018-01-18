@@ -2,16 +2,34 @@ mongoimport restaurants.json
 -----------------------------------------------
 • Display the fields restaurant_id, name, borough and cuisine for all the documents in
 the collection restaurant.
+
+	db.getCollection('restaurants').find({}, {"borough":1, "cuisine":1})
+
 • Display the second group of 5 restaurants which are in the borough Bronx.
+
+	db.getCollection('restaurants').find({"borough":"Bronx"},{"name":1}).limit(5).skip(5)
+
 • Find the restaurants who achieved a score more than 90.
-• Find the restaurants that do not prepare any cuisine of 'American' and their grade
-score more than 70 and latitude less than -65.754168.
+	
+	db.getCollection('restaurants').find({grades:{$elemMatch: {"score": {$gt:90}}}}, {"name":1})
+
+• Find the restaurants that do not prepare any cuisine of 'American' and their grade score more than 70 and latitude less than -65.754168.
+
+	db.getCollection('restaurants').find({$and: [{"cuisine": {$ne:"American "}}, {grades:{$elemMatch: {"score": {$gt:70}}}}]},{"name":1})
+
 • Find the restaurants which belong to the borough Bronx and prepared either
 American or Chinese dish.
-• Find the restaurant Id, name, borough and cuisine for those restaurants which are not
-belonging to the borough Staten Island or Queens or Bronxor Brooklyn.
-• Find the restaurant Id, name, borough and cuisine for those restaurants which
-achieved a score which is not more than 10.
+
+	db.getCollection('restaurants').find({$and:[{"borough": "Bronx"},{$or:[{"cuisine":"American "},{"cuisine":"Chinese"}]}]},{"name":1})
+
+• Find the restaurant Id, name, borough and cuisine for those restaurants which are not belonging to the borough Staten Island or Queens or Bronxor Brooklyn.
+
+	db.getCollection('restaurants').find({"borough": {$nin: ["Staten Island", "Queens","Bronxor Brooklyn"]}}, {"name":1, "borough":1, "cuisine":1})
+
+• Find the restaurant Id, name, borough and cuisine for those restaurants which achieved a score which is not more than 10.
+
+	db.getCollection('restaurants').find({grades:{$elemMatch: {"score": {$lt:10}}}}, {"name":1, "borough":1, "cuisine":1})
+
 Find the restaurant Id, name, and grades for those restaurants which achieved a
 grade of "A" and scored 11 on an ISODate "2014-08-11T00:00:00Z" among many of
 survey dates.
